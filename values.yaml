@@ -59,6 +59,9 @@ tolerations: []
 
 affinity: {}
 
+# Override the command for the container.
+command: nil
+
 # Additional volumes for the daemonset.
 volumes: nil
 
