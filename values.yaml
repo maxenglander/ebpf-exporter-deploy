@@ -60,10 +60,10 @@ tolerations: []
 affinity: {}
 
 # Override the command for the container.
-command: nil
+command: ~
 
 # Additional volumes for the daemonset.
-volumes: nil
+volumes: ~
 
 # Additional volumeMounts for the daemonset.
-volumeMounts: nil
+volumeMounts: ~
