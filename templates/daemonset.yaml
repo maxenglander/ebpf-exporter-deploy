@@ -53,6 +53,10 @@ spec:
       nodeSelector:
         {{- toYaml .Values.nodeSelector | trim | nindent 8 }}
       {{- end }}
+      {{- if not (empty .Values.tolerations) }}
+      tolerations:
+        {{- toYaml .Values.tolerations | trim | nindent 8 }}
+      {{- end }}
       restartPolicy: Always
       schedulerName: default-scheduler
       volumes:
