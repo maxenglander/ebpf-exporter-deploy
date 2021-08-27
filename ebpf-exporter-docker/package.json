@@ -1,6 +1,6 @@
 {
   "name": "ebpf-exporter-docker",
-  "version": "0.0.0",
+  "version": "1.2.3",
   "description": "Docker image for ebpf_exporter",
   "repository": "git@github.com:teacherspayteachers/ebpf-exporter-deploy.git",
   "license": "MIT",
