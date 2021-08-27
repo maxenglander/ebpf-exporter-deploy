@@ -1,0 +1,74 @@
+{
+  "extends": [
+    "semantic-release-monorepo"
+  ],
+  "analyzeCommits": {
+    "releaseRules": [
+      {
+        "breaking": true,
+        "release": "minor"
+      }
+    ]
+  },
+  "branches": [
+    "+([0-9])?(.{+([0-9]),x}).x",
+    "main",
+    "next",
+    "next-major",
+    {
+      "name": "beta",
+      "prerelease": true
+    },
+    {
+      "name": "alpha",
+      "prerelease": true
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false
+      }
+    ],
+    [
+      "semantic-release-helm",
+      {
+        "chartPath": "./charts/ebpf-exporter",
+        "onlyUpdateVersion": true
+      }
+    ],
+    [
+      "semantic-release-helm-app-version",
+      {
+        "chartPath": "./charts/ebpf-exporter",
+        "packageName": "ebpf-exporter-docker"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "charts/ebpf-exporter/Chart.yaml",
+          "package.json",
+          "package-lock.json"
+        ],
+        "message": "chore(ebpf-exporter-helm): release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "@semantic-release/github",
+    [
+      "@brpaz/semantic-release-helm",
+      {
+        "chartPath": "./charts/ebpf-exporter",
+        "chartRepository": {
+          "branch": "gh-pages",
+          "url": "https://teacherspayteachers.github.io/helm-charts",
+          "repository": "teacherspayteachers/helm-charts"
+        }
+      }
+    ]
+  ]
+}
